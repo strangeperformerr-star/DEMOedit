@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Friend's Sweet Songs</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Lora', serif;
+      background: linear-gradient(to bottom, #f5e6ff, #d4f0e8);
+      color: #333;
+      overflow-x: hidden;
+    }
+    .ribbon {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: transform 1s ease-in-out;
+    }
+    .ribbon img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+      cursor: pointer;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+    }
+    .ribbon-text {
+      position: absolute;
+      color: #fff;
+      font-family: 'Indie Flower', cursive;
+      font-size: 2.5em;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      pointer-events: none;
+    }
+    .ribbon.hidden {
+      transform: translateY(-100%);
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+    .container.visible {
+      opacity: 1;
+    }
+    .card {
+      display: flex;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin: 20px 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .photo-container {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo {
+      max-width: 100%;
+      border-radius: 10px;
+      animation: float 4s ease-in-out infinite;
+    }
+    .lyrics {
+      flex: 2;
+      padding: 20px;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #4a4a4a;
+    }
+    .lyrics h2 {
+      font-family: 'Indie Flower', cursive;
+      color: #6b4e71;
+      margin-top: 0;
+    }
+    .lyrics p {
+      margin: 0;
+    }
+    .lyrics p span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .lyrics.playing p span {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .lyrics audio {
+      margin-top: 15px;
+      width: 100%;
+      outline: none;
+    }
+    .lyrics audio::-webkit-media-controls-panel {
+      background: #ffb6c1;
+      border-radius: 10px;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    @keyframes typewriter {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #6b4e71;
+      font-size: 0.9em;
+    }
+    @media (max-width: 600px) {
+      .card {
+        flex-direction: column;
+      }
+      .photo-container, .lyrics {
+        flex: none;
+        width: 100%;
+      }
+      .photo {
+        max-width: 80%;
+      }
+      .ribbon-text {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="ribbon" id="ribbon">
+    <img src="ribbon.png" alt="Pull the Ribbon">
+    <div class="ribbon-text">Pull Me!</div>
+  </div>
+  <div class="container" id="container">
+    <div class="card" data-song="song1.mp3">
+      <div class="photo-container">
+        <img class="photo" src="friend-photo.jpg" alt="Your Friend">
+      </div>
+      <div class="lyrics">
+        <h2>Sweet Song 1</h2>
+        <p>
+          <span>Softly the moonlight glows,</span><br>
+          <span>Whispers of dreams nobody knows,</span><br>
+          <span>In the quiet, my heart sings low,</span><br>
+          <span>Carrying love where the breezes go.</span>
+        </p>
+        <audio controls>
+          <source src="song1.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    <div class="card" data-song="song2.mp3">
+      <div class="photo-container">
+        <img class="photo" src="friend-photo.jpg" alt="Your Friend">
+      </div>
+      <div class="lyrics">
+        <h2>Sweet Song 2</h2>
+        <p>
+          <span>Petals fall slow in the morning light,</span><br>
+          <span>Chasing the stars through the velvet night,</span><br>
+          <span>My heart's a melody, soft and bright,</span><br>
+          <span>Singing of peace till the world feels right.</span>
+        </p>
+        <audio controls>
+          <source src="song2.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    <div class="card" data-song="song3.mp3">
+      <div class="photo-container">
+        <img class="photo" src="friend-photo.jpg" alt="Your Friend">
+      </div>
+      <div class="lyrics">
+        <h2>Sweet Song 3</h2>
+        <p>
+          <span>Hold my hand by the river's bend,</span><br>
+          <span>Where sweet songs start and never end,</span><br>
+          <span>Every note is a wish I send,</span><br>
+          <span>For love and peace to forever mend.</span>
+        </p>
+        <audio controls>
+          <source src="song3.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+  </div>
+  <footer>
+    Made with love for [Your Friend's Name] | Contact: <a href="mailto:example@email.com">Email</a>
+  </footer>
+  <script>
+    const ribbon = document.getElementById('ribbon');
+    const container = document.getElementById('container');
+    const cards = document.querySelectorAll('.card');
+    let currentAudio = null;
+
+    ribbon.addEventListener('click', () => {
+      ribbon.classList.add('hidden');
+      container.classList.add('visible');
+      const firstCard = cards[0];
+      const firstAudio = firstCard.querySelector('audio');
+      const firstLyrics = firstCard.querySelector('.lyrics');
+      if (firstAudio) {
+        currentAudio = firstAudio;
+        currentAudio.play().catch(error => {
+          console.log('Auto-play blocked:', error);
+        });
+        firstLyrics.classList.add('playing');
+        firstCard.classList.add('visible');
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+          if (!card.classList.contains('visible')) {
+            card.classList.add('visible');
+            if (currentAudio) {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            }
+            const audio = card.querySelector('audio');
+            const lyrics = card.querySelector('.lyrics');
+            if (audio) {
+              currentAudio = audio;
+              currentAudio.play().catch(error => {
+                console.log('Playback error:', error);
+              });
+              lyrics.classList.add('playing');
+            }
+          }
+        }
+      });
+    });
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+          cards.forEach(c => c.querySelector('.lyrics').classList.remove('playing'));
+        }
+        const audio = card.querySelector('audio');
+        const lyrics = card.querySelector('.lyrics');
+        if (audio) {
+          currentAudio = audio;
+          audio.play().catch(error => {
+            console.log('Playback error:', error);
+          });
+          lyrics.classList.add('playing');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
