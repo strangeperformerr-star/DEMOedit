@@ -1,502 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Friend's Sweet Songs</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Lora', serif;
-      background: linear-gradient(to bottom, #f5e6ff, #d4f0e8);
-      color: #333;
-      overflow-x: hidden;
-    }
-    .ribbon {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      transition: transform 1s ease-in-out;
-    }
-    .ribbon img {
-      max-width: 80%;
-      max-height: 80%;
-      object-fit: contain;
-      cursor: pointer;
-      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
-    }
-    .ribbon-text {
-      position: absolute;
-      color: #fff;
-      font-family: 'Indie Flower', cursive;
-      font-size: 2.5em;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      pointer-events: none;
-    }
-    .ribbon.hidden {
-      transform: translateY(-100%);
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      opacity: 0;
-      transition: opacity 1s ease-in;
-    }
-    .container.visible {
-      opacity: 1;
-    }
-    .card {
-      display: flex;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      margin: 20px 0;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .photo-container {
-      flex: 1;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .photo {
-      max-width: 100%;
-      border-radius: 10px;
-      animation: float 4s ease-in-out infinite;
-    }
-    .lyrics {
-      flex: 2;
-      padding: 20px;
-      font-size: 1.1em;
-      line-height: 1.6;
-      color: #4a4a4a;
-    }
-    .lyrics h2 {
-      font-family: 'Indie Flower', cursive;
-      color: #6b4e71;
-      margin-top: 0;
-    }
-    .lyrics-container {
-      max-height: 150px;
-      overflow-y: hidden;
-      position: relative;
-    }
-    .lyrics p {
-      margin: 0;
-      transition: transform 0.5s ease;
-    }
-    .lyrics p span {
-      display: block;
-      opacity: 0.5;
-      transition: all 0.3s ease;
-      margin-bottom: 10px;
-    }
-    .lyrics p span.previous {
-      opacity: 0.3;
-    }
-    .lyrics p span.highlight {
-      opacity: 1;
-      font-weight: bold;
-      background: #ffb6c1;
-      padding: 2px 5px;
-      border-radius: 3px;
-    }
-    .lyrics audio {
-      margin-top: 15px;
-      width: 100%;
-      outline: none;
-    }
-    .lyrics audio::-webkit-media-controls-panel {
-      background: #ffb6c1;
-      border-radius: 10px;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #6b4e71;
-      font-size: 0.9em;
-    }
-    @media (max-width: 600px) {
-      .card {
-        flex-direction: column;
-      }
-      .photo-container, .lyrics {
-        flex: none;
-        width: 100%;
-      }
-      .photo {
-        max-width: 80%;
-      }
-      .ribbon-text {
-        font-size: 1.5em;
-      }
-      .lyrics-container {
-        max-height: 100px;
-      }
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Indie_Flower&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="ribbon" id="ribbon">
-    <img src="Copilot_20250920_190312.png" alt="Pull the Ribbon">
-    <div class="ribbon-text">Click Here!</div>
-  </div>
-  <div class="container" id="container">
-    <div class="card" data-song="american_wedding.mp3">
-      <div class="photo-container">
-        <img class="photo" src="assests/1.jpeg" alt="Your Friend">
-      </div>
-      <div class="lyrics">
-        <h2>American Wedding</h2>
-        <div class="lyrics-container">
-          <p>
-            <span>American wedding, you were my medicine</span><br>
-            <span>Back in the day, we were young and innocent</span><br>
-            <span>I said I love you, you said it back to me</span><br>
-            <span>Now we're just shadows of what we used to be</span><br>
-            <span>Riding in the Chevy, top down, feeling free</span><br>
-            <span>Promised you forever, but it wasn't meant to be</span><br>
-            <span>Heartbreak on the highway, left me in the rain</span><br>
-            <span>Still hear your voice, calling out my name</span>
-          </p>
-        </div>
-        <audio controls>
-          <source src="american_wedding.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="card" data-song="for_a_reason.mp3">
-      <div class="photo-container">
-        <img class="photo" src="assests/2.jpeg" alt="Your Friend">
-      </div>
-      <div class="lyrics">
-        <h2>For A Reason</h2>
-        <div class="lyrics-container">
-          <p>
-            <span>Tere toh meri na, nazar lehndi</span><br>
-            <span>Hattha te tere naa’ di, lalan mehndi</span><br>
-            <span>Puchda main tera kyon kara?</span><br>
-            <span>Aujla tere te mar jaan</span><br>
-            <span>Dil vich tu, bas ik wajah</span><br>
-            <span>Raati neend na aave, teri gallan sajah</span><br>
-            <span>Chann te tera mukh, vekhda main raah</span><br>
-            <span>Jind meri, tere naal hai wafa</span>
-          </p>
-        </div>
-        <audio controls>
-          <source src="for_a_reason.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="card" data-song="song3.mp3">
-      <div class="photo-container">
-        <img class="photo" src="assests/3.jpeg" alt="Your Friend">
-      </div>
-      <div class="lyrics">
-        <h2>Sweet Song 3</h2>
-        <div class="lyrics-container">
-          <p>
-            <span>Hold my hand by the river's bend,</span><br>
-            <span>Where sweet songs start and never end,</span><br>
-            <span>Every note is a wish I send,</span><br>
-            <span>For love and peace to forever mend,</span><br>
-            <span>Stars above, they light our way,</span><br>
-            <span>Softly singing till the break of day,</span><br>
-            <span>Heart to heart, forever we'll stay,</span><br>
-            <span>In this melody, come what may.</span>
-          </p>
-        </div>
-        <audio controls>
-          <source src="lovemenot.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="card" data-song="song4.mp3">
-      <div class="photo-container">
-        <img class="photo" src="assests/8.jpeg" alt="Your Friend">
-      </div>
-      <div class="lyrics">
-        <h2>Sweet Song 4</h2>
-        <div class="lyrics-container">
-          <p>
-            <span>Dil diyan gallan, raati sunava,</span><br>
-            <span>Tere naal dil, hamesha judava,</span><br>
-            <span>Chann di roshni, dil nu chhu jave,</span><br>
-            <span>Ik pal vi tere bin, na guzara jave,</span><br>
-            <span>Yaadan teriyan, dil vich samayi,</span><br>
-            <span>Har saah naal, tu hi dis aayi,</span><br>
-            <span>Ishq di raah, tu hi meri jaan,</span><br>
-            <span>Tere naal hai, meri har ik shaan.</span>
-          </p>
-        </div>
-        <audio controls>
-          <source src="Honeypie.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="card" data-song="song5.mp3">
-      <div class="photo-container">
-        <img class="photo" src="assests/5.jpeg" alt="Your Friend">
-      </div>
-      <div class="lyrics">
-        <h2>Sweet Song 5</h2>
-        <div class="lyrics-container">
-          <p>
-            <span>Moonlight dances on the quiet stream,</span><br>
-            <span>Your smile carries my every dream,</span><br>
-            <span>Whispers of love in the evening glow,</span><br>
-            <span>Forever with you, my heart will go,</span><br>
-            <span>Every heartbeat sings your name,</span><br>
-            <span>In this love, we’ll stay the same,</span><br>
-            <span>Through the night, we’ll find our way,</span><br>
-            <span>Together forever, come what may.</span>
-          </p>
-        </div>
-        <audio controls>
-          <source src="sohigh.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="card" data-song="song6.mp3">
-      <div class="photo-container">
-        <img class="photo" src="assests/6.jpeg" alt="Your Friend">
-      </div>
-      <div class="lyrics">
-        <h2>Sweet Song 6</h2>
-        <div class="lyrics-container">
-          <p>
-            <span>Tere bin dil, lagda na koi,</span><br>
-            <span>Har pal vich, bas teri hi khoj,</span><br>
-            <span>Chann di chamak, teri yaad layi,</span><br>
-            <span>Dil nu chhu jaave, teri har baat,</span><br>
-            <span>Ishq di raah, tu hi meri roshni,</span><br>
-            <span>Tere naal meri, har khushi sohni,</span><br>
-            <span>Jind jaan tu, mere dil di baat,</span><br>
-            <span>Tere naal hi, dil di har raat.</span>
-          </p>
-        </div>
-        <audio controls>
-          <source src="luther.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="card" data-song="song7.mp3">
-      <div class="photo-container">
-        <img class="photo" src="assests/7.jpeg" alt="Your Friend">
-      </div>
-      <div class="lyrics">
-        <h2>Sweet Song 7</h2>
-        <div class="lyrics-container">
-          <p>
-            <span>Under the stars, where our dreams align,</span><br>
-            <span>Your gentle touch, makes my heart divine,</span><br>
-            <span>Every whisper, like a soft sweet rhyme,</span><br>
-            <span>Carries our love through the sands of time,</span><br>
-            <span>Hand in hand, through the night we roam,</span><br>
-            <span>With you, my heart has found its home,</span><br>
-            <span>Forever’s a promise we’ll always keep,</span><br>
-            <span>In this love, our souls run deep.</span>
-          </p>
-        </div>
-        <audio controls>
-          <source src="cinamon.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="card" data-song="song8.mp3">
-      <div class="photo-container">
-        <img class="photo" src="assests/4.jpeg" alt="Your Friend">
-      </div>
-      <div class="lyrics">
-        <h2>Sweet Song 8</h2>
-        <div class="lyrics-container">
-          <p>
-            <span>Teri yaad vich, dil mera gaave,</span><br>
-            <span>Har pal tu, dil nu chhu jaave,</span><br>
-            <span>Ishq diyan gallan, raati sunava,</span><br>
-            <span>Tere naal dil, hamesha judava,</span><br>
-            <span>Chann di roshni, teri yaad layi,</span><br>
-            <span>Dil diyan baatan, tu hi samjhayi,</span><br>
-            <span>Tere bin jind, lagdi na koi,</span><br>
-            <span>Tu hi meri, har khushi di khoj.</span>
-          </p>
-        </div>
-        <audio controls>
-          <source src="rock.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-  </div>
-  <footer>
-    Made with love for [Your Friend's Name] | Contact: <a href="mailto:example@email.com">Email</a>
-  </footer>
-  <script>
-    const ribbon = document.getElementById('ribbon');
-    const container = document.getElementById('container');
-    const cards = document.querySelectorAll('.card');
-    let currentAudio = null;
-    let lastScrollPlay = 0;
-    let lyricInterval = null;
-
-    function highlightLyrics(lyrics) {
-      // Reset all highlights and positions
-      cards.forEach(c => {
-        const container = c.querySelector('.lyrics-container p');
-        container.style.transform = 'translateY(0)';
-        c.querySelectorAll('.lyrics p span').forEach(span => {
-          span.classList.remove('highlight', 'previous');
-          span.style.opacity = '0.5';
-        });
-      });
-
-      // Highlight and scroll lyrics
-      const spans = lyrics.querySelectorAll('p span');
-      const container = lyrics.querySelector('.lyrics-container p');
-      let index = 0;
-      clearInterval(lyricInterval);
-      lyricInterval = setInterval(() => {
-        if (index < spans.length) {
-          spans.forEach((s, i) => {
-            s.classList.remove('highlight', 'previous');
-            if (i < index) s.classList.add('previous');
-            else if (i === index) s.classList.add('highlight');
-          });
-          // Scroll to center the active line
-          const offset = index * 30; // Adjust based on line height (30px per line)
-          container.style.transform = `translateY(-${offset}px)`;
-          index++;
-        } else {
-          clearInterval(lyricInterval);
-        }
-      }, 4000); // Adjust timing (4s per line)
-    }
-
-    function playAudio(audio, lyrics) {
-      // Stop current audio and reset lyrics
-      if (currentAudio && currentAudio !== audio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        clearInterval(lyricInterval);
-      }
-
-      // Check if audio loaded
-      if (audio.readyState === 0) {
-        console.log(`Audio file ${audio.src} not loaded. Check path and file.`);
-        return;
-      }
-
-      // Play new audio and highlight lyrics
-      currentAudio = audio;
-      audio.play().catch(error => {
-        console.log('Playback error:', error);
-      });
-      highlightLyrics(lyrics);
-    }
-
-    ribbon.addEventListener('click', () => {
-      ribbon.classList.add('hidden');
-      container.classList.add('visible');
-      const firstCard = cards[0];
-      const firstAudio = firstCard.querySelector('audio');
-      const firstLyrics = firstCard.querySelector('.lyrics');
-      if (firstAudio) {
-        setTimeout(() => {
-          playAudio(firstAudio, firstLyrics);
-          firstCard.classList.add('visible');
-        }, 100);
-      }
-    });
-
-    function debounce(func, wait) {
-      let timeout;
-      return function executedFunction(...args) {
-        const later = () => {
-          clearTimeout(timeout);
-          func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-      };
-    }
-
-    const handleScroll = debounce(() => {
-      const now = Date.now();
-      if (now - lastScrollPlay < 1000) return;
-
-      let mostVisibleCard = null;
-      let maxVisibleHeight = 0;
-
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
-        if (visibleHeight > maxVisibleHeight && rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
-          mostVisibleCard = card;
-          maxVisibleHeight = visibleHeight;
-        }
-      });
-
-      if (mostVisibleCard && !mostVisibleCard.classList.contains('visible')) {
-        mostVisibleCard.classList.add('visible');
-        const audio = mostVisibleCard.querySelector('audio');
-        const lyrics = mostVisibleCard.querySelector('.lyrics');
-        if (audio) {
-          playAudio(audio, lyrics);
-          lastScrollPlay = now;
-        }
-      }
-    }, 200);
-
-    window.addEventListener('scroll', handleScroll);
-
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        const audio = card.querySelector('audio');
-        const lyrics = card.querySelector('.lyrics');
-        if (audio) {
-          playAudio(audio, lyrics);
-        }
-      });
-    });
-  </script>
-</body>
-</html> -->
-
-
-
-
-
-
-<!-- // here is the responsive version Check -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -637,22 +138,25 @@
       color: #6b4e71;
       font-size: 0.9em;
     }
-    /* Enhanced media queries for better responsiveness */
+
+    /* ONLY CHANGE: Smaller cards & images on mobile */
     @media (max-width: 768px) {
       .container {
         padding: 20px 10px;
       }
       .card {
         flex-direction: column;
-        margin: 15px 0;
+        margin: 12px 0;
+        border-radius: 12px;
       }
-      .photo-container, .lyrics {
+      .photo-container,
+      .lyrics {
         flex: none;
         width: 100%;
-        padding: 15px;
+        padding: 12px;
       }
       .photo {
-        max-width: 100%;
+        max-width: 75%; /* Smaller image */
       }
       .ribbon-text {
         font-size: 2em;
@@ -668,6 +172,7 @@
         padding: 15px;
       }
     }
+
     @media (max-width: 480px) {
       .ribbon-text {
         font-size: 1.5em;
@@ -683,8 +188,10 @@
       }
       .card {
         border-radius: 10px;
+        margin: 10px 0;
       }
       .photo {
+        max-width: 65%; /* Even smaller on tiny phones */
         border-radius: 8px;
       }
     }
@@ -699,7 +206,7 @@
   <div class="container" id="container">
     <div class="card" data-song="american_wedding.mp3">
       <div class="photo-container">
-        <img class="photo" src="assests/1.jpeg" alt="Your Friend"> <!-- Fixed typo: assests -> assets -->
+        <img class="photo" src="assests/1.jpeg" alt="Your Friend">
       </div>
       <div class="lyrics">
         <h2>American Wedding</h2>
@@ -723,7 +230,7 @@
     </div>
     <div class="card" data-song="for_a_reason.mp3">
       <div class="photo-container">
-        <img class="photo" src="assests/2.jpeg" alt="Your Friend"> <!-- Fixed typo -->
+        <img class="photo" src="assests/2.jpeg" alt="Your Friend">
       </div>
       <div class="lyrics">
         <h2>For A Reason</h2>
@@ -747,7 +254,7 @@
     </div>
     <div class="card" data-song="song3.mp3">
       <div class="photo-container">
-        <img class="photo" src="assests/3.jpeg" alt="Your Friend"> <!-- Fixed typo -->
+        <img class="photo" src="assests/3.jpeg" alt="Your Friend">
       </div>
       <div class="lyrics">
         <h2>Sweet Song 3</h2>
@@ -771,7 +278,7 @@
     </div>
     <div class="card" data-song="song4.mp3">
       <div class="photo-container">
-        <img class="photo" src="assests/4.jpeg" alt="Your Friend"> <!-- Fixed typo -->
+        <img class="photo" src="assests/4.jpeg" alt="Your Friend">
       </div>
       <div class="lyrics">
         <h2>Sweet Song 4</h2>
@@ -795,7 +302,7 @@
     </div>
     <div class="card" data-song="song5.mp3">
       <div class="photo-container">
-        <img class="photo" src="assests/5.jpeg" alt="Your Friend"> <!-- Fixed typo -->
+        <img class="photo" src="assests/5.jpeg" alt="Your Friend">
       </div>
       <div class="lyrics">
         <h2>Sweet Song 5</h2>
@@ -819,7 +326,7 @@
     </div>
     <div class="card" data-song="song6.mp3">
       <div class="photo-container">
-        <img class="photo" src="assests/6.jpeg" alt="Your Friend"> <!-- Fixed typo -->
+        <img class="photo" src="assests/6.jpeg" alt="Your Friend">
       </div>
       <div class="lyrics">
         <h2>Sweet Song 6</h2>
@@ -843,7 +350,7 @@
     </div>
     <div class="card" data-song="song7.mp3">
       <div class="photo-container">
-        <img class="photo" src="assests/7.jpeg" alt="Your Friend"> <!-- Fixed typo -->
+        <img class="photo" src="assests/7.jpeg" alt="Your Friend">
       </div>
       <div class="lyrics">
         <h2>Sweet Song 7</h2>
@@ -867,7 +374,7 @@
     </div>
     <div class="card" data-song="song8.mp3">
       <div class="photo-container">
-        <img class="photo" src="assests/8.jpeg" alt="Your Friend"> <!-- Fixed typo -->
+        <img class="photo" src="assests/8.jpeg" alt="Your Friend">
       </div>
       <div class="lyrics">
         <h2>Sweet Song 8</h2>
@@ -902,7 +409,6 @@
     let lyricInterval = null;
 
     function highlightLyrics(lyrics) {
-      // Reset all highlights and positions
       cards.forEach(c => {
         const container = c.querySelector('.lyrics-container p');
         container.style.transform = 'translateY(0)';
@@ -912,7 +418,6 @@
         });
       });
 
-      // Highlight and scroll lyrics
       const spans = lyrics.querySelectorAll('p span');
       const container = lyrics.querySelector('.lyrics-container p');
       let index = 0;
@@ -924,31 +429,27 @@
             if (i < index) s.classList.add('previous');
             else if (i === index) s.classList.add('highlight');
           });
-          // Scroll to center the active line
-          const offset = index * 30; // Adjust based on line height (30px per line)
+          const offset = index * 30;
           container.style.transform = `translateY(-${offset}px)`;
           index++;
         } else {
           clearInterval(lyricInterval);
         }
-      }, 4000); // Adjust timing (4s per line)
+      }, 4000);
     }
 
     function playAudio(audio, lyrics) {
-      // Stop current audio and reset lyrics
       if (currentAudio && currentAudio !== audio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
         clearInterval(lyricInterval);
       }
 
-      // Check if audio loaded
       if (audio.readyState === 0) {
         console.log(`Audio file ${audio.src} not loaded. Check path and file.`);
         return;
       }
 
-      // Play new audio and highlight lyrics
       currentAudio = audio;
       audio.play().catch(error => {
         console.log('Playback error:', error);
